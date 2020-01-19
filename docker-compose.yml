@@ -1,0 +1,8 @@
+version: "3.5"
+services:
+    app:
+        container_name: swift_tensorflow_sample
+        build: ./
+        working_dir: /usr/src/app
+        volumes:
+            - ./:/usr/src/app
