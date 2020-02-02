@@ -30,6 +30,7 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN wget https://storage.googleapis.com/swift-tensorflow-artifacts/releases/v0.6/rc2/deduped/swift-tensorflow-RELEASE-0.6-cuda10.0-cudnn7-ubuntu18.04.tar.gz \
-    && tar -xzf swift-tensorflow-RELEASE-0.6-cuda10.0-cudnn7-ubuntu18.04.tar.gz
+    && tar xvzf swift-tensorflow-RELEASE-0.6-cuda10.0-cudnn7-ubuntu18.04.tar.gz \
+    && rm swift-tensorflow-RELEASE-0.6-cuda10.0-cudnn7-ubuntu18.04.tar.gz
 
 ENV PATH $(pwd)/usr/bin:"${PATH}"
