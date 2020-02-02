@@ -34,3 +34,5 @@ RUN wget https://storage.googleapis.com/swift-tensorflow-artifacts/releases/v0.6
     && rm swift-tensorflow-RELEASE-0.6-cuda10.0-cudnn7-ubuntu18.04.tar.gz
 
 ENV PATH $(pwd)/usr/bin:"${PATH}"
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES utility,compute
