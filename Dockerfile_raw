@@ -1,0 +1,7 @@
+FROM nvidia/cuda:10.0-base-ubuntu18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ENV PATH $(pwd)/usr/bin:"${PATH}"
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES utility,compute
