@@ -17,36 +17,22 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
     apt install -y --no-install-recommends \
-    clang \
-    libpython-dev \
-    libblocksruntime-dev \
-    wget
+    curl \
+    && apt clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# RUN wget https://storage.googleapis.com/swift-tensorflow-artifacts/releases/v0.6/rc2/deduped/swift-tensorflow-RELEASE-0.6-cuda10.1-cudnn7-ubuntu18.04.tar.gz \
-#     && tar xvzf swift-tensorflow-RELEASE-0.6-cuda10.1-cudnn7-ubuntu18.04.tar.gz \
-#     && rm swift-tensorflow-RELEASE-0.6-cuda10.1-cudnn7-ubuntu18.04.tar.gz
+RUN curl -O https://storage.googleapis.com/swift-tensorflow-artifacts/releases/v0.11/rc2/swift-tensorflow-RELEASE-0.11-cuda10.1-cudnn7-ubuntu18.04.tar.gz
+RUN tar -xvzf swift-tensorflow-RELEASE-0.11-cuda10.1-cudnn7-ubuntu18.04.tar.gz --directory /
+RUN rm swift-tensorflow-RELEASE-0.11-cuda10.1-cudnn7-ubuntu18.04.tar.gz
 
-RUN apt install -y --no-install-recommends \
+RUN apt update && \
+    apt install -y --no-install-recommends \
     build-essential \
-    git \
-    # cmake \
-    # ninja-build \
-    # python \
-    # uuid-dev \
-    # libicu-dev \
-    # icu-devtools \
+    clang \
     libedit-dev \
     libxml2-dev \
-    # libsqlite3-dev \
-    # swig \
-    # libncurses5-dev \
-    # pkg-config \
     libcurl4-openssl-dev \
-    # systemtap-sdt-dev \
-    # tzdata \
-    # rsync \
     libatomic1 \
-    libpython3.6-dev \
     cuda-command-line-tools-${CUDA/./-} \
     libcublas10=10.2.1.243-1 \
     cuda-nvrtc-${CUDA/./-} \
@@ -54,17 +40,10 @@ RUN apt install -y --no-install-recommends \
     cuda-curand-${CUDA/./-} \
     cuda-cusolver-${CUDA/./-} \
     cuda-cusparse-${CUDA/./-} \
-    curl \
     libcudnn7=${CUDNN}+cuda${CUDA} \
-    libfreetype6-dev \
-    libhdf5-serial-dev \
-    libzmq3-dev \
-    pkg-config \
-    software-properties-common \
-    unzip \
     && apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV PATH $(pwd)/usr/bin:"${PATH}"
+
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES utility,compute
